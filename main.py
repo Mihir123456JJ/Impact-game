@@ -16,19 +16,19 @@ class Sprite(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
     def move(self,x_change,y_change):
         self.rect.x=max(
-            min(self.rect.x+x_change,SCREEN_WIDTH=self.rect.width),0
+            min(self.rect.x+x_change,SCREEN_WIDTH-self.rect.width),0
         ) 
-        self.rect.y=max (min(self.rect.y+y_change,SCREEN_WIDTH=self.rect.height),0
+        self.rect.y=max (min(self.rect.y+y_change,SCREEN_HEIGHT-self.rect.height),0
         )    
 screen=pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption("Sprite Collision")
 all_sprites=pygame.sprite.Group()
-s1=Sprite(pygame.color("black"), 50,35)
+s1=Sprite(pygame.Color("black"), 50,35)
 s1.rect.x,s1.rect.y=random.randint(
     0, SCREEN_WIDTH -s1.rect.width),random.randint(
         0,SCREEN_HEIGHT -s1.rect.height)
 all_sprites.add(s1)
-s2=Sprite(pygame.color("red"), 50,35)
+s2=Sprite(pygame.Color("red"), 50,35)
 s2.rect.x,s2.rect.y=random.randint(
     0, SCREEN_WIDTH -s2.rect.width),random.randint(
         0,SCREEN_HEIGHT -s2.rect.height)
@@ -51,7 +51,7 @@ while running:
     screen.blit(bg_image,(0,0))
     all_sprites.draw(screen)
     if won:
-      win_text=font.render("You Won!",True,pygame.color("black"))
+      win_text=font.render("You Won!",True,pygame.Color("black"))
       screen.blit(win_text,((SCREEN_WIDTH-win_text.get_width())//2,
      (SCREEN_HEIGHT-win_text.get_height())//2))
     pygame.display.flip()
